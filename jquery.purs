@@ -54,6 +54,16 @@ module JQuery where
     \  }; \
     \}" :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
+  -- .before(...)
+  foreign import before 
+    "function before(ob) { \
+    \  return function(ob1) { \
+    \    return function () { \
+    \      return ob1.before(ob); \
+    \    }; \
+    \  }; \
+    \}" :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
   -- .append(...)
   foreign import appendText 
     "function appendText(s) { \
