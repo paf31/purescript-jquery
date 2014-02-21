@@ -1,6 +1,6 @@
 module JQuery where
 
-  import Eff
+  import Control.Monad.Eff
 
   -- An effect type which indicates DOM manipulation
   foreign import data DOM :: !
