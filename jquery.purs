@@ -54,6 +54,25 @@ module JQuery where
     \  }; \
     \}" :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
+  foreign import appendAtIndex
+    "function appendAtIndex(i) { \ 
+    \  return function(ob1) { \
+    \    return function(ob) { \
+    \      return function () { \
+    \        return ob1.before(ob.children()[i]); \
+    \      }; \
+    \    }; \
+    \  }; \
+    \}" :: forall eff. Number -> JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
+  -- .remove()
+  foreign import remove 
+    "function remove(ob) { \
+    \  return function () { \
+    \    return ob.remove(); \
+    \  }; \
+    \}" :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+
   -- .before(...)
   foreign import before 
     "function before(ob) { \
