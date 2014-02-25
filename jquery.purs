@@ -1,5 +1,6 @@
 module JQuery where
 
+  import Data.JSON
   import Control.Monad.Eff
 
   -- An effect type which indicates DOM manipulation
@@ -25,6 +26,18 @@ module JQuery where
     \}" :: forall eff. String -> Eff (dom :: DOM | eff) JQuery
 
   -- .attr({ ... })
+  foreign import setAttr 
+    "function setAttr(attr) { \
+    \  return function(val) { \
+    \    return function(ob) { \
+    \      return function () { \
+    \        return ob.attr(attr, val);\
+    \      }; \
+    \    }; \
+    \  }; \
+    \}" :: forall eff attr. String -> JSON -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
+  -- .attr({ ... })
   foreign import attr 
     "function attr(attrs) { \
     \  return function(ob) { \
@@ -43,6 +56,28 @@ module JQuery where
     \    }; \
     \  }; \
     \}" :: forall eff css. { | css } -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
+  -- .prop({ ... })
+  foreign import setProp 
+    "function setProp(p) { \
+    \  return function(val) { \
+    \    return function(ob) { \
+    \      return function () { \
+    \        return ob.prop(p, val);\
+    \      }; \
+    \    }; \
+    \  }; \
+    \}" :: forall eff attr. String -> JSON -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
+  -- .prop({ ... })
+  foreign import getProp 
+    "function getProp(p) { \
+    \  return function(ob) { \
+    \    return function () { \
+    \      return ob.prop(p);\
+    \    }; \
+    \  }; \
+    \}" :: forall eff attr. String -> JQuery -> Eff (dom :: DOM | eff) JSON
 
   -- .append(...)
   foreign import append 
@@ -123,7 +158,7 @@ module JQuery where
     \  return function() { \
     \    return ob.val(); \
     \  }; \
-    \}" :: forall eff. JQuery -> Eff (dom :: DOM | eff) String
+    \}" :: forall eff. JQuery -> Eff (dom :: DOM | eff) JSON
 
   -- Set the value of a text field
   foreign import setValue 
@@ -133,7 +168,7 @@ module JQuery where
     \      return ob.val(val); \
     \    }; \
     \  }; \
-    \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+    \}" :: forall eff. JSON -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
   -- Register an event handler
   foreign import on 

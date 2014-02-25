@@ -1,6 +1,8 @@
 module Main where
 
+import Data.Either
 import Prelude
+import Data.JSON
 import Control.Monad.Eff
 import Debug.Trace
 import JQuery
@@ -23,6 +25,6 @@ main = do
 
   -- Listen for change events on the text box
   flip (on "change") input $ do
-    name <- getValue input
+    Right name <- runParser readJSON <$> getValue input
     trace $ "Name changed to " ++ name
     setText ("Hello, " ++ name) greeting
