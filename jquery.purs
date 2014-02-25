@@ -35,7 +35,7 @@ module JQuery where
     \      }; \
     \    }; \
     \  }; \
-    \}" :: forall eff attr. String -> JSON -> JQuery -> Eff (dom :: DOM | eff) JQuery
+    \}" :: forall eff a. String -> a -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
   -- .attr({ ... })
   foreign import attr 
@@ -67,7 +67,7 @@ module JQuery where
     \      }; \
     \    }; \
     \  }; \
-    \}" :: forall eff attr. String -> JSON -> JQuery -> Eff (dom :: DOM | eff) JQuery
+    \}" :: forall a eff. String -> a -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
   -- .prop({ ... })
   foreign import getProp 
@@ -77,7 +77,7 @@ module JQuery where
     \      return ob.prop(p);\
     \    }; \
     \  }; \
-    \}" :: forall eff attr. String -> JQuery -> Eff (dom :: DOM | eff) JSON
+    \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JSON
 
   -- .append(...)
   foreign import append 
@@ -168,7 +168,7 @@ module JQuery where
     \      return ob.val(val); \
     \    }; \
     \  }; \
-    \}" :: forall eff. JSON -> JQuery -> Eff (dom :: DOM | eff) JQuery
+    \}" :: forall eff a. a -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
   -- Register an event handler
   foreign import on 
