@@ -94,7 +94,19 @@ module JQuery where
     \  return function(ob1) { \
     \    return function(ob) { \
     \      return function () { \
-    \        return ob1.before(ob.children()[i]); \
+    \        var children = ob.children();\
+    \        if (children.length > 0) {\
+    \          if (i <= 0) {\
+    \             ob.prepend(ob1);\
+    \          } else if (i >= children.length) {\
+    \             ob.append(ob1);\
+    \          } else {\
+    \             ob1.insertBefore(jQuery(children[i]));\
+    \          }\
+    \          return ob;\
+    \        } else {\
+    \          return ob.append(ob1); \
+    \        }\
     \      }; \
     \    }; \
     \  }; \
