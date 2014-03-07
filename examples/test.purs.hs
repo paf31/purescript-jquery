@@ -4,8 +4,8 @@ import Data.Either
 import Prelude
 import Data.JSON
 import Control.Monad.Eff
+import Control.Monad.JQuery
 import Debug.Trace
-import JQuery
 
 main = do
   -- Get the document body
