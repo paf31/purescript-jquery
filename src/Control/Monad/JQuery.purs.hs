@@ -1,6 +1,7 @@
 module Control.Monad.JQuery where
 
-import Data.JSON
+import Prelude ()
+import Data.Foreign
 import Control.Monad.Eff
 
 -- An effect type which indicates DOM manipulation
@@ -77,7 +78,7 @@ foreign import getProp
   \      return ob.prop(p);\
   \    }; \
   \  }; \
-  \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JSON
+  \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Foreign
 
 -- .append(...)
 foreign import append 
@@ -170,7 +171,7 @@ foreign import getValue
   \  return function() { \
   \    return ob.val(); \
   \  }; \
-  \}" :: forall eff. JQuery -> Eff (dom :: DOM | eff) JSON
+  \}" :: forall eff. JQuery -> Eff (dom :: DOM | eff) Foreign
 
 -- Set the value of a text field
 foreign import setValue 
