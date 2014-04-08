@@ -190,10 +190,10 @@ foreign import on
   \    return function(ob) { \
   \      return function() { \
   \        return ob.on(evt, function() { \
-  \          act(); \
+  \          act(jQuery(this))(); \
   \        }); \
   \      }; \
   \    }; \
   \  }; \
-  \}" :: forall eff a. String -> Eff eff a -> JQuery -> Eff (dom :: DOM | eff) JQuery
-
+  \}" :: forall eff a. String -> (JQuery -> Eff eff a) -> JQuery ->
+         Eff (dom :: DOM | eff) JQuery
