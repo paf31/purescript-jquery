@@ -24,7 +24,7 @@ main = do
   greeting `J.append` b
 
   -- Listen for change events on the text box
-  flip (J.on "change") input $ do
+  flip (J.on "change") input $ \_ -> do
     Right name <- parseForeign read <$> J.getValue input
     trace $ "Name changed to " ++ name
     J.setText ("Hello, " ++ name) greeting
