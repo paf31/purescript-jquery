@@ -7,7 +7,7 @@ import Control.Monad.Eff
 import qualified Control.Monad.JQuery as J
 import Debug.Trace
 
-main = do
+main = J.ready $ do
   -- Get the document body
   b <- J.body
 

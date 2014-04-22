@@ -22,7 +22,8 @@ module.exports = function(grunt) {
         purescript: {
             options: {
                 tco: true,
-                magicDo: true
+                magicDo: true,
+                main: true
             },
             test: {
                 src:
