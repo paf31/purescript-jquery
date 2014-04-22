@@ -10,6 +10,14 @@ foreign import data DOM :: !
 -- The jQuery wrapper type
 foreign import data JQuery :: *
 
+-- $(document).ready(function() { ... })
+foreign import ready
+  "function ready(func) { \
+  \  return function () { \
+  \    jQuery(document).ready(func); \
+  \  }; \
+  \}" :: forall eff a. Eff eff a -> Eff (dom :: DOM | eff) JQuery
+
 -- Wrapper function for jQuery selection $('..')
 foreign import select 
   "function select(selector) { \
