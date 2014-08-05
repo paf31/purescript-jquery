@@ -6,30 +6,25 @@ module.exports = function(grunt) {
 
         clean: ["externs", "js"],
 
-        "purescript-make": {
-            options: {
-                tco: true,
-                magicDo: true
-            },
+        pscMake: {
             lib: {
                 src:
-                    [ "src/**/*.purs.hs"
+                    [ "src/**/*.purs"
                     , "bower_components/purescript-*/src/**/*.purs"
                     ]
             }
         },
 
-        purescript: {
+        psc: {
             options: {
-                tco: true,
-                magicDo: true,
-                main: true
+                main: true,
+	        modules: ["Data.Either", "Main"]
             },
             test: {
                 src:
-                    [ "src/**/*.purs.hs"
+                    [ "src/**/*.purs"
                     , "bower_components/purescript-*/src/**/*.purs"
-                    , "examples/test.purs.hs"
+                    , "examples/test.purs"
                     ],
                 dest: "js/test.js"
             }
@@ -40,6 +35,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-purescript");
     grunt.loadNpmTasks("grunt-contrib-clean");
 
-    grunt.registerTask("default", ["purescript-make:lib"]);
-    grunt.registerTask("test", ["purescript:test"]);
+    grunt.registerTask("default", ["pscMake:lib", "psc:test"]);
+    grunt.registerTask("test", ["psc:test"]);
 };

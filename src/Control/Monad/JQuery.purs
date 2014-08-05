@@ -1,6 +1,5 @@
 module Control.Monad.JQuery where
 
-import Prelude ()
 import Data.Foreign
 import Control.Monad.Eff
 
@@ -9,6 +8,9 @@ foreign import data DOM :: !
 
 -- The jQuery wrapper type
 foreign import data JQuery :: *
+
+-- Type of jQuery event objects
+foreign import data JQueryEvent :: *
 
 -- $(document).ready(function() { ... })
 foreign import ready
@@ -65,6 +67,26 @@ foreign import css
   \    }; \
   \  }; \
   \}" :: forall eff css. { | css } -> JQuery -> Eff (dom :: DOM | eff) JQuery
+  
+-- .addClass(...)
+foreign import addClass
+  "function addClass(cls) { \
+  \  return function(ob) { \
+  \    return function () { \
+  \      return ob.addClass(cls); \
+  \    }; \
+  \  }; \
+  \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+  
+-- .removeClass(...)
+foreign import removeClass
+  "function removeClass(cls) { \
+  \  return function(ob) { \
+  \    return function () { \
+  \      return ob.removeClass(cls); \
+  \    }; \
+  \  }; \
+  \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
 -- .prop({ ... })
 foreign import setProp 
@@ -128,6 +150,14 @@ foreign import remove
   \    return ob.remove(); \
   \  }; \
   \}" :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+  
+-- .empty()
+foreign import clear 
+  "function clear(ob) { \
+  \  return function () { \
+  \    return ob.empty(); \
+  \  }; \
+  \}" :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
 
 -- .before(...)
 foreign import before 
@@ -168,7 +198,7 @@ foreign import setText
   "function setText(text) { \
   \  return function(ob) { \
   \    return function() { \
-  \      ob.text(text); \
+  \      return ob.text(text); \
   \    };\
   \  };\
   \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
@@ -197,11 +227,49 @@ foreign import on
   \  return function(act) { \
   \    return function(ob) { \
   \      return function() { \
-  \        return ob.on(evt, function() { \
-  \          act(jQuery(this))(); \
+  \        return ob.on(evt, function(e) { \
+  \          act(e)(jQuery(this))(); \
   \        }); \
   \      }; \
   \    }; \
   \  }; \
-  \}" :: forall eff a. String -> (JQuery -> Eff eff a) -> JQuery ->
+  \}" :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff eff a) -> JQuery ->
          Eff (dom :: DOM | eff) JQuery
+
+-- Register an event handler
+foreign import on'
+  "function on$prime(evt) { \
+  \  return function(sel) { \
+  \    return function(act) { \
+  \      return function(ob) { \
+  \        return function() { \
+  \          return ob.on(evt, function(e) { \
+  \            act(e)(jQuery(this))(); \
+  \          }); \
+  \        }; \
+  \      }; \
+  \    }; \
+  \  }; \
+  \}" :: forall eff a. String -> String -> (JQueryEvent -> JQuery -> Eff eff a) -> JQuery ->
+         Eff (dom :: DOM | eff) JQuery
+         
+foreign import preventDefault
+  "function preventDefault(e) { \
+  \  return function() { \
+  \    e.preventDefault(); \
+  \ } \
+  \}" :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+         
+foreign import stopPropagation
+  "function stopPropagation(e) { \
+  \  return function() { \
+  \    e.stopPropagation(); \
+  \ } \
+  \}" :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+         
+foreign import stopImmediatePropagation
+  "function stopImmediatePropagation(e) { \
+  \  return function() { \
+  \    e.stopImmediatePropagation(); \
+  \ } \
+  \}" :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
