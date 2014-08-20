@@ -3,6 +3,7 @@ module Main where
 import Data.Either
 import Prelude
 import Data.Foreign
+import Data.Foreign.Class
 import Control.Monad.Eff
 import qualified Control.Monad.JQuery as J
 import Debug.Trace
@@ -25,6 +26,6 @@ main = J.ready $ do
 
   -- Listen for change events on the text box
   flip (J.on "change") input $ \_ _ -> do
-    Right name <- parseForeign read <$> J.getValue input
+    Right name <- read <$> J.getValue input
     trace $ "Name changed to " ++ name
     J.setText ("Hello, " ++ name) greeting
