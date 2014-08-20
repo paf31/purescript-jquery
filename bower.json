@@ -16,6 +16,6 @@
     "js"
   ],
   "dependencies": {
-    "purescript-foreign": "~0.1.7"
+    "purescript-foreign": "~0.2.0"
   }
 }
