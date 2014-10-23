@@ -28,6 +28,34 @@ foreign import select
   \  }; \
   \}" :: forall eff. String -> Eff (dom :: DOM | eff) JQuery
 
+-- .find(...)
+foreign import find
+  "function select(selector) { \
+  \  return function(ob) { \
+  \    return function () { \
+  \      return ob.find(selector); \
+  \    }; \
+  \  }; \
+  \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
+-- .parent()
+foreign import parent
+  "function parent(ob) { \
+  \  return function () { \
+  \    return ob.parent(); \
+  \  }; \
+  \}" :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+
+-- .closest(...)
+foreign import closest
+  "function closest(selector) { \
+  \  return function(ob) { \
+  \    return function () { \
+  \      return ob.closest(selector); \
+  \    }; \
+  \  }; \
+  \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
 -- Wrapper function for jQuery creation e.g. $('<div>')
 foreign import create 
   "function create(html) { \
@@ -68,6 +96,16 @@ foreign import css
   \  }; \
   \}" :: forall eff css. { | css } -> JQuery -> Eff (dom :: DOM | eff) JQuery
   
+-- .hasClass(...)
+foreign import hasClass
+  "function hasClass(cls) { \
+  \  return function(ob) { \
+  \    return function () { \
+  \      return ob.hasClass(cls); \
+  \    }; \
+  \  }; \
+  \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Boolean
+
 -- .addClass(...)
 foreign import addClass
   "function addClass(cls) { \
@@ -243,7 +281,7 @@ foreign import on'
   \    return function(act) { \
   \      return function(ob) { \
   \        return function() { \
-  \          return ob.on(evt, function(e) { \
+  \          return ob.on(evt, sel, function(e) { \
   \            act(e)(jQuery(this))(); \
   \          }); \
   \        }; \
