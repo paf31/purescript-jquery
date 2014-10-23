@@ -46,6 +46,16 @@ foreign import parent
   \  }; \
   \}" :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
 
+-- .closest(...)
+foreign import closest
+  "function closest(selector) { \
+  \  return function(ob) { \
+  \    return function () { \
+  \      return ob.closest(selector); \
+  \    }; \
+  \  }; \
+  \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
 -- Wrapper function for jQuery creation e.g. $('<div>')
 foreign import create 
   "function create(html) { \
