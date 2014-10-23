@@ -68,6 +68,16 @@ foreign import css
   \  }; \
   \}" :: forall eff css. { | css } -> JQuery -> Eff (dom :: DOM | eff) JQuery
   
+-- .hasClass(...)
+foreign import hasClass
+  "function hasClass(cls) { \
+  \  return function(ob) { \
+  \    return function () { \
+  \      return ob.hasClass(cls); \
+  \    }; \
+  \  }; \
+  \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Boolean
+
 -- .addClass(...)
 foreign import addClass
   "function addClass(cls) { \
