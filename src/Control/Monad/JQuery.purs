@@ -28,6 +28,16 @@ foreign import select
   \  }; \
   \}" :: forall eff. String -> Eff (dom :: DOM | eff) JQuery
 
+-- .find(...)
+foreign import find
+  "function select(selector) { \
+  \  return function(ob) { \
+  \    return function () { \
+  \      return ob.find(selector); \
+  \    }; \
+  \  }; \
+  \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
 -- Wrapper function for jQuery creation e.g. $('<div>')
 foreign import create 
   "function create(html) { \
