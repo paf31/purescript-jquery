@@ -38,6 +38,14 @@ foreign import find
   \  }; \
   \}" :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
+-- .parent()
+foreign import parent
+  "function parent(ob) { \
+  \  return function () { \
+  \    return ob.parent(); \
+  \  }; \
+  \}" :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+
 -- Wrapper function for jQuery creation e.g. $('<div>')
 foreign import create 
   "function create(html) { \
