@@ -243,7 +243,7 @@ foreign import on'
   \    return function(act) { \
   \      return function(ob) { \
   \        return function() { \
-  \          return ob.on(evt, function(e) { \
+  \          return ob.on(evt, sel, function(e) { \
   \            act(e)(jQuery(this))(); \
   \          }); \
   \        }; \
