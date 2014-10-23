@@ -4,8 +4,6 @@
 
 ### Types
 
-    data DOM :: !
-
     data JQuery :: *
 
     data JQueryEvent :: *

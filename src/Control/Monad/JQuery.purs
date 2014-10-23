@@ -2,9 +2,7 @@ module Control.Monad.JQuery where
 
 import Data.Foreign
 import Control.Monad.Eff
-
--- An effect type which indicates DOM manipulation
-foreign import data DOM :: !
+import DOM
 
 -- The jQuery wrapper type
 foreign import data JQuery :: *
