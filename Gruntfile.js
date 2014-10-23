@@ -1,40 +1,42 @@
 module.exports = function(grunt) {
 
-    "use strict";
+  "use strict";
 
-    grunt.initConfig({
-
-        clean: ["externs", "js"],
-
-        pscMake: {
-            lib: {
-                src:
-                    [ "src/**/*.purs"
-                    , "bower_components/purescript-*/src/**/*.purs"
-                    ]
-            }
-        },
-
-        psc: {
-            options: {
-                main: true,
-	        modules: ["Data.Either", "Main"]
-            },
-            test: {
-                src:
-                    [ "src/**/*.purs"
-                    , "bower_components/purescript-*/src/**/*.purs"
-                    , "examples/test.purs"
-                    ],
-                dest: "js/test.js"
-            }
+  grunt.initConfig({ 
+  
+    libFiles: [
+      "src/**/*.purs",
+      "bower_components/purescript-*/src/**/*.purs",
+    ],
+    
+    clean: ["output"],
+  
+    pscMake: ["<%=libFiles%>"],
+    dotPsci: ["<%=libFiles%>"],
+    docgen: {
+        readme: {
+            src: "src/**/*.purs",
+            dest: "README.md"
         }
+    },
+    jsvalidate: {
+      options: {
+        globals: {},
+        esprimaOptions: {},
+        verbose: false
+      },
+      targetName: {
+        files: {
+          src: ["output/Control.Monad.JQuery/*.js"]
+        }
+      }
+    }
+  });
 
-    });
-
-    grunt.loadNpmTasks("grunt-purescript");
-    grunt.loadNpmTasks("grunt-contrib-clean");
-
-    grunt.registerTask("default", ["pscMake:lib", "psc:test"]);
-    grunt.registerTask("test", ["psc:test"]);
+  grunt.loadNpmTasks("grunt-contrib-clean");
+  grunt.loadNpmTasks("grunt-purescript");
+  grunt.loadNpmTasks("grunt-jsvalidate");
+  
+  grunt.registerTask("make", ["pscMake", "dotPsci", "docgen", "jsvalidate"]);
+  grunt.registerTask("default", ["make"]);
 };
