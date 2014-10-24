@@ -33,7 +33,7 @@ foreign import select
 -- .find(...)
 foreign import find
   """
-  function select(selector) {
+  function find(selector) {
     return function(ob) {
       return function () {
         return ob.find(selector);
