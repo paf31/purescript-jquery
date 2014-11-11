@@ -321,7 +321,7 @@ foreign import on
       };
     };
   }
-  """ :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff eff a) -> JQuery ->
+  """ :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery ->
          Eff (dom :: DOM | eff) JQuery
 
 -- Register an event handler
@@ -340,7 +340,7 @@ foreign import on'
       };
     };
   }
-  """ :: forall eff a. String -> String -> (JQueryEvent -> JQuery -> Eff eff a) -> JQuery ->
+  """ :: forall eff a. String -> String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery ->
          Eff (dom :: DOM | eff) JQuery
 
 foreign import preventDefault

@@ -43,9 +43,9 @@
 
     hasClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Boolean
 
-    on :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff eff a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
+    on :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-    on' :: forall eff a. String -> String -> (JQueryEvent -> JQuery -> Eff eff a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
+    on' :: forall eff a. String -> String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
     parent :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
 
