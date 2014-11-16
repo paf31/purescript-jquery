@@ -18,7 +18,7 @@ foreign import ready
       jQuery(document).ready(func);
     };
   }
-  """ :: forall eff a. Eff eff a -> Eff (dom :: DOM | eff) JQuery
+  """ :: forall eff a. Eff (dom :: DOM | eff) a -> Eff (dom :: DOM | eff) JQuery
 
 -- Wrapper function for jQuery selection $('..')
 foreign import select

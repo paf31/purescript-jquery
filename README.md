@@ -51,7 +51,7 @@
 
     preventDefault :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
 
-    ready :: forall eff a. Eff eff a -> Eff (dom :: DOM | eff) JQuery
+    ready :: forall eff a. Eff (dom :: DOM | eff) a -> Eff (dom :: DOM | eff) JQuery
 
     remove :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
 
