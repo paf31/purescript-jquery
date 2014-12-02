@@ -307,6 +307,26 @@ foreign import setValue
   }
   """ :: forall eff a. a -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
+-- Display the matched elements
+foreign import display
+  """
+  function display(ob) {
+    return function() {
+      return ob.show();
+    };
+  }
+  """ :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+
+-- Hide the matched elements
+foreign import hide
+  """
+  function hide(ob) {
+    return function() {
+      return ob.hide();
+    };
+  }
+  """ :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+
 -- Register an event handler
 foreign import on
   """
