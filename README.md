@@ -33,8 +33,6 @@
 
     css :: forall eff css. {  | css } -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-    display :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
-
     find :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
     getProp :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Foreign
@@ -44,8 +42,6 @@
     getValue :: forall eff. JQuery -> Eff (dom :: DOM | eff) Foreign
 
     hasClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Boolean
-
-    hide :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
 
     on :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
@@ -74,3 +70,5 @@
     stopImmediatePropagation :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
 
     stopPropagation :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+
+    toggle :: forall eff. Boolean -> JQuery -> Eff (dom :: DOM | eff) JQuery
