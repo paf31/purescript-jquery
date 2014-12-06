@@ -33,6 +33,8 @@
 
     css :: forall eff css. {  | css } -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
+    currentTarget :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) JQuery
+
     find :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
     getProp :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Foreign
@@ -70,3 +72,5 @@
     stopImmediatePropagation :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
 
     stopPropagation :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+
+    target :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) JQuery
