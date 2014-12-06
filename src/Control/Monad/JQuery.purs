@@ -369,3 +369,21 @@ foreign import stopImmediatePropagation
     };
   }
   """ :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+
+foreign import target
+  """
+  function target(e) {
+    return function() {
+      return jQuery(e.target);
+    };
+  }
+  """ :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) JQuery
+
+foreign import currentTarget
+  """
+  function currentTarget(e) {
+    return function() {
+      return jQuery(e.currentTarget);
+    };
+  }
+  """ :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) JQuery
