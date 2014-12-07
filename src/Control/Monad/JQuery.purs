@@ -309,7 +309,16 @@ foreign import setValue
 
 foreign import toggle
   """
-  function toggle(flag) {
+  function toggle(ob) {
+    return function() {
+      return ob.toggle();
+    };
+  }
+  """ :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+
+foreign import toggle'
+  """
+  function toggle$prime(flag) {
     return function(ob) {
       return function() {
         return ob.toggle(flag);
@@ -317,6 +326,12 @@ foreign import toggle
     };
   }
   """ :: forall eff. Boolean -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
+hide :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+hide = toggle' false
+
+display :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+display = toggle' true
 
 -- Register an event handler
 foreign import on
