@@ -124,29 +124,35 @@ foreign import hasClass
   }
   """ :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Boolean
 
--- .addClass(...)
-foreign import addClass
+foreign import toggleClass
   """
-  function addClass(cls) {
+  function toggleClass(cls) {
     return function(ob) {
       return function () {
-        return ob.addClass(cls);
+        return ob.toggleClass(cls);
       };
     };
   }
   """ :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
--- .removeClass(...)
-foreign import removeClass
+foreign import toggleClass'
   """
-  function removeClass(cls) {
-    return function(ob) {
-      return function () {
-        return ob.removeClass(cls);
+  function toggleClass$prime(cls) {
+    return function(flag) {
+      return function(ob) {
+        return function () {
+          return ob.toggleClass(cls, flag);
+        };
       };
     };
   }
-  """ :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+  """ :: forall eff. String -> Boolean -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
+addClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+addClass cls = toggleClass' cls true
+
+removeClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+removeClass cls = toggleClass' cls false
 
 -- .prop({ ... })
 foreign import setProp
