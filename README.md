@@ -78,3 +78,7 @@
     toggle :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
 
     toggle' :: forall eff. Boolean -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
+    toggleClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
+    toggleClass' :: forall eff. String -> Boolean -> JQuery -> Eff (dom :: DOM | eff) JQuery
