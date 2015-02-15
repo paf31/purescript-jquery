@@ -4,13 +4,13 @@
 
 ### Types
 
-     The jQuery wrapper type
+     The jQuery wrapper type
 
     data JQuery :: *
 
-     Type of jQuery event objects
+     Type of jQuery event objects
 
-    data JQueryEvent :: *
+    type JQueryEvent = { metaKey :: Boolean, which :: Number, pageY :: Number, pageX :: Number, relatedTarget :: Node, target :: Node }
 
 
 ### Values
@@ -18,114 +18,114 @@
 
     addClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     .append(...)
+     .append(...)
 
     append :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
 
     appendAtIndex :: forall eff. Number -> JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     .append(...)
+     .append(...)
 
     appendText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     .attr({ ... })
+     .attr({ ... })
 
     attr :: forall eff attr. {  | attr } -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     .before(...)
+     .before(...)
 
     before :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     Get the document body
+     Get the document body
 
     body :: forall eff. Eff (dom :: DOM | eff) JQuery
 
-     .empty()
+     .empty()
 
     clear :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     .closest(...)
+     .closest(...)
 
     closest :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     Wrapper function for jQuery creation e.g. $('<div>')
+     Wrapper function for jQuery creation e.g. $('<div>')
 
     create :: forall eff. String -> Eff (dom :: DOM | eff) JQuery
 
-     .css({ ... })
+     .css({ ... })
 
     css :: forall eff css. {  | css } -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
 
     display :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     .find(...)
+     .find(...)
 
     find :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     .prop({ ... })
+     .prop({ ... })
 
     getProp :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Foreign
 
-     Get the text content of an element
+     Get the text content of an element
 
     getText :: forall eff. JQuery -> Eff (dom :: DOM | eff) String
 
-     Get the value of a text field
+     Get the value of a text field
 
     getValue :: forall eff. JQuery -> Eff (dom :: DOM | eff) Foreign
 
-     .hasClass(...)
+     .hasClass(...)
 
     hasClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Boolean
 
 
     hide :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     Register an event handler
+     Register an event handler
 
     on :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     Register an event handler
+     Register an event handler
 
     on' :: forall eff a. String -> String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     .parent()
+     .parent()
 
     parent :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
 
 
     preventDefault :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
 
-     $(document).ready(function() { ... })
+     $(document).ready(function() { ... })
 
     ready :: forall eff a. Eff (dom :: DOM | eff) a -> Eff (dom :: DOM | eff) JQuery
 
-     .remove()
+     .remove()
 
     remove :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
 
 
     removeClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     Wrapper function for jQuery selection $('..')
+     Wrapper function for jQuery selection $('..')
 
     select :: forall eff. String -> Eff (dom :: DOM | eff) JQuery
 
-     .attr({ ... })
+     .attr({ ... })
 
     setAttr :: forall eff a. String -> a -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     .prop({ ... })
+     .prop({ ... })
 
     setProp :: forall a eff. String -> a -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     Set the text content of an element
+     Set the text content of an element
 
     setText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     Set the value of a text field
+     Set the value of a text field
 
     setValue :: forall eff a. a -> JQuery -> Eff (dom :: DOM | eff) JQuery
 

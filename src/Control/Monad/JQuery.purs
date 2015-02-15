@@ -8,7 +8,14 @@ import DOM
 foreign import data JQuery :: *
 
 -- Type of jQuery event objects
-foreign import data JQueryEvent :: *
+type JQueryEvent =
+  { target :: Node
+  , relatedTarget :: Node
+  , pageX :: Number
+  , pageY :: Number
+  , which :: Number
+  , metaKey :: Boolean
+  }
 
 -- $(document).ready(function() { ... })
 foreign import ready
