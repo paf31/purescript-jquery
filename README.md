@@ -2,147 +2,241 @@
 
 ## Module Control.Monad.JQuery
 
-### Types
+#### `JQuery`
 
-     The jQuery wrapper type
+``` purescript
+data JQuery :: *
+```
 
-    data JQuery :: *
+#### `JQueryEvent`
 
-     Type of jQuery event objects
+``` purescript
+data JQueryEvent :: *
+```
 
-    data JQueryEvent :: *
+#### `ready`
 
+``` purescript
+ready :: forall eff a. Eff (dom :: DOM | eff) a -> Eff (dom :: DOM | eff) JQuery
+```
 
-### Values
+#### `select`
 
+``` purescript
+select :: forall eff. String -> Eff (dom :: DOM | eff) JQuery
+```
 
-    addClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `find`
 
-     .append(...)
+``` purescript
+find :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    append :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `parent`
 
+``` purescript
+parent :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    appendAtIndex :: forall eff. Number -> JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `closest`
 
-     .append(...)
+``` purescript
+closest :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    appendText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `create`
 
-     .attr({ ... })
+``` purescript
+create :: forall eff. String -> Eff (dom :: DOM | eff) JQuery
+```
 
-    attr :: forall eff attr. {  | attr } -> JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `setAttr`
 
-     .before(...)
+``` purescript
+setAttr :: forall eff a. String -> a -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    before :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `attr`
 
-     Get the document body
+``` purescript
+attr :: forall eff attr. {  | attr } -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    body :: forall eff. Eff (dom :: DOM | eff) JQuery
+#### `css`
 
-     .empty()
+``` purescript
+css :: forall eff css. {  | css } -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    clear :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `hasClass`
 
-     .closest(...)
+``` purescript
+hasClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Boolean
+```
 
-    closest :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `toggleClass`
 
-     Wrapper function for jQuery creation e.g. $('<div>')
+``` purescript
+toggleClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    create :: forall eff. String -> Eff (dom :: DOM | eff) JQuery
 
-     .css({ ... })
+#### `toggleClass'`
 
-    css :: forall eff css. {  | css } -> JQuery -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+toggleClass' :: forall eff. String -> Boolean -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
 
-    display :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `addClass`
 
-     .find(...)
+``` purescript
+addClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    find :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     .prop({ ... })
+#### `removeClass`
 
-    getProp :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Foreign
+``` purescript
+removeClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-     Get the text content of an element
 
-    getText :: forall eff. JQuery -> Eff (dom :: DOM | eff) String
+#### `setProp`
 
-     Get the value of a text field
+``` purescript
+setProp :: forall a eff. String -> a -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    getValue :: forall eff. JQuery -> Eff (dom :: DOM | eff) Foreign
+#### `getProp`
 
-     .hasClass(...)
+``` purescript
+getProp :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Foreign
+```
 
-    hasClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Boolean
+#### `append`
 
+``` purescript
+append :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    hide :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `appendAtIndex`
 
-     Register an event handler
+``` purescript
+appendAtIndex :: forall eff. Number -> JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    on :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
-     Register an event handler
+#### `remove`
 
-    on' :: forall eff a. String -> String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+remove :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-     .parent()
+#### `clear`
 
-    parent :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+clear :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
+#### `before`
 
-    preventDefault :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+``` purescript
+before :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-     $(document).ready(function() { ... })
+#### `appendText`
 
-    ready :: forall eff a. Eff (dom :: DOM | eff) a -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+appendText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-     .remove()
+#### `body`
 
-    remove :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+body :: forall eff. Eff (dom :: DOM | eff) JQuery
+```
 
+#### `getText`
 
-    removeClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+getText :: forall eff. JQuery -> Eff (dom :: DOM | eff) String
+```
 
-     Wrapper function for jQuery selection $('..')
+#### `setText`
 
-    select :: forall eff. String -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+setText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-     .attr({ ... })
+#### `getValue`
 
-    setAttr :: forall eff a. String -> a -> JQuery -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+getValue :: forall eff. JQuery -> Eff (dom :: DOM | eff) Foreign
+```
 
-     .prop({ ... })
+#### `setValue`
 
-    setProp :: forall a eff. String -> a -> JQuery -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+setValue :: forall eff a. a -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-     Set the text content of an element
+#### `toggle`
 
-    setText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+toggle :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-     Set the value of a text field
 
-    setValue :: forall eff a. a -> JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `toggle'`
 
+``` purescript
+toggle' :: forall eff. Boolean -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    stopImmediatePropagation :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
 
+#### `hide`
 
-    stopPropagation :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+``` purescript
+hide :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
 
-    toggle :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+#### `display`
 
+``` purescript
+display :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
-    toggle' :: forall eff. Boolean -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
+#### `on`
 
-    toggleClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+on :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
 
+#### `on'`
 
-    toggleClass' :: forall eff. String -> Boolean -> JQuery -> Eff (dom :: DOM | eff) JQuery
+``` purescript
+on' :: forall eff a. String -> String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
+
+#### `preventDefault`
+
+``` purescript
+preventDefault :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+```
+
+
+#### `stopPropagation`
+
+``` purescript
+stopPropagation :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+```
+
+
+#### `stopImmediatePropagation`
+
+``` purescript
+stopImmediatePropagation :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+```
