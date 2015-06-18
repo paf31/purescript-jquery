@@ -1,7 +1,7 @@
 /* global exports */
 "use strict";
 
-// module Control.Monad.JQuery
+// module Control.Monad.Eff.JQuery
 
 exports.ready = function(func) {
     return function() {

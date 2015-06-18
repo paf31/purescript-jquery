@@ -1,4 +1,4 @@
-## Module Control.Monad.JQuery
+## Module Control.Monad.Eff.JQuery
 
 This module defines foreign types and functions for working with 
 the jQuery library.

@@ -1,7 +1,7 @@
 -- | This module defines foreign types and functions for working with 
 -- | the jQuery library.
 
-module Control.Monad.JQuery where
+module Control.Monad.Eff.JQuery where
 
 import Prelude (Unit())
 import DOM (DOM())
