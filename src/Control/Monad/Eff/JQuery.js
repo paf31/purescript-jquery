@@ -207,7 +207,7 @@ exports.on = function(evt) {
     };
 };
 
-exports.on$prime = function(evt) {
+exports.on1 = function(evt) {
     return function(sel) {
         return function(act) {
             return function(ob) {
