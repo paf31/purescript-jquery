@@ -119,7 +119,14 @@ foreign import on :: forall eff a.
                        Eff (dom :: DOM | eff) JQuery
 
 -- | Register an event handler for elements matching a selector.
-foreign import on' :: forall eff a. 
+on' :: forall eff a. String -> 
+                    Selector -> 
+                    (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> 
+                    JQuery ->
+                    Eff (dom :: DOM | eff) JQuery
+on' = on1
+
+foreign import on1 :: forall eff a. 
                         String -> 
                         Selector -> 
                         (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> 

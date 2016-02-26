@@ -17,6 +17,7 @@ main = ready $ do
   -- Create a text box
   div   <- create "<div>"
   input <- create "<input>"
+  addClass "name" input
   appendText "Your Name: " div
   append input div
   append div body
@@ -27,9 +28,10 @@ main = ready $ do
   append greeting body
 
   -- Listen for change events on the text box
-  on "change" (handleChange input greeting) input 
+  on' "change" ".name" (handleChange greeting) div
   where
-  handleChange input greeting _ _ = do
+  handleChange greeting _ div = do
+    input <- find ".name" div
     Right name <- read <$> getValue input
     log $ "Name changed to " ++ name
     setText ("Hello, " ++ name) greeting
