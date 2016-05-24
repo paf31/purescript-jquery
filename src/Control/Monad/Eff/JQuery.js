@@ -176,7 +176,7 @@ exports.getHtml = function(ob) {
 exports.setHtml = function(html) {
     return function(ob) {
         return function() {
-            return ob.html(text)
+            return ob.html(html)
         }
     }
 }
