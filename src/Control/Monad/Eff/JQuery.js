@@ -167,6 +167,20 @@ exports.setText = function(text) {
     };
 };
 
+exports.getHtml = function(ob) {
+    return function() {
+        return ob.html();
+    }
+}
+
+exports.setHtml = function(html) {
+    return function(ob) {
+        return function() {
+            return ob.html(text)
+        }
+    }
+}
+
 exports.getValue = function(ob) {
     return function() {
         return ob.val();
