@@ -91,6 +91,12 @@ foreign import getText :: forall eff. JQuery -> Eff (dom :: DOM | eff) String
 -- | Set the text content of an element.
 foreign import setText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
+-- | Get the html content of an element.
+foreign import getHtml :: forall eff. JQuery -> Eff (dom :: DOM | eff) String
+
+-- | Set the html content of an element
+foreign import setHtml :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+
 -- | Get the value of a form element.
 foreign import getValue :: forall eff. JQuery -> Eff (dom :: DOM | eff) Foreign
 

@@ -219,6 +219,22 @@ setText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
 
 Set the text content of an element.
 
+#### `getHtml`
+
+``` purescript
+getHtml :: forall eff. JQuery -> Eff (dom :: DOM | eff) String
+```
+
+Get the html content of an element.
+
+#### `setHtml`
+
+``` purescript
+setHtml :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+```
+
+Set the html content of an element
+
 #### `getValue`
 
 ``` purescript
