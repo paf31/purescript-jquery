@@ -299,6 +299,14 @@ on' :: forall eff a. String -> Selector -> (JQueryEvent -> JQuery -> Eff (dom ::
 
 Register an event handler for elements matching a selector.
 
+#### `toArray`
+
+``` purescript
+toArray :: forall eff. JQuery -> Eff (dom :: DOM | eff) (Array JQuery)
+```
+
+Convert the elements in the JQuery into an array of JQuery.
+
 #### `preventDefault`
 
 ``` purescript
