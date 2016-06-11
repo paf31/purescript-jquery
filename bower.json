@@ -16,12 +16,15 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-dom": "~0.2.6",
-    "purescript-eff": "~0.1.0",
-    "purescript-foreign": "~0.7.0"
+    "purescript-dom": "^1.0.0",
+    "purescript-eff": "^1.0.0",
+    "purescript-foreign": "^1.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/paf31/purescript-jquery.git"
+  },
+  "devDependencies": {
+    "purescript-console": "^1.0.0"
   }
 }

@@ -1,6 +1,6 @@
 ## Module Control.Monad.Eff.JQuery
 
-This module defines foreign types and functions for working with 
+This module defines foreign types and functions for working with
 the jQuery library.
 
 #### `JQuery`
@@ -30,7 +30,7 @@ A type synonym to help readability of type signatures.
 #### `ready`
 
 ``` purescript
-ready :: forall eff a. Eff (dom :: DOM | eff) a -> Eff (dom :: DOM | eff) JQuery
+ready :: forall eff a. Eff (dom :: DOM | eff) a -> Eff (dom :: DOM | eff) Unit
 ```
 
 Run a function when the document is loaded.
@@ -78,7 +78,7 @@ Create an element.
 #### `setAttr`
 
 ``` purescript
-setAttr :: forall eff a. String -> a -> JQuery -> Eff (dom :: DOM | eff) JQuery
+setAttr :: forall eff a. String -> a -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Set a single attribute.
@@ -86,7 +86,7 @@ Set a single attribute.
 #### `attr`
 
 ``` purescript
-attr :: forall eff attr. {  | attr } -> JQuery -> Eff (dom :: DOM | eff) JQuery
+attr :: forall eff attr. {  | attr } -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Set multiple attributes.
@@ -94,7 +94,7 @@ Set multiple attributes.
 #### `css`
 
 ``` purescript
-css :: forall eff css. {  | css } -> JQuery -> Eff (dom :: DOM | eff) JQuery
+css :: forall eff css. {  | css } -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Set CSS properties.
@@ -110,7 +110,7 @@ Test if an element has a CSS class.
 #### `toggleClass`
 
 ``` purescript
-toggleClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+toggleClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Toggle the specified CSS class.
@@ -118,7 +118,7 @@ Toggle the specified CSS class.
 #### `setClass`
 
 ``` purescript
-setClass :: forall eff. String -> Boolean -> JQuery -> Eff (dom :: DOM | eff) JQuery
+setClass :: forall eff. String -> Boolean -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Set the specified CSS class.
@@ -126,7 +126,7 @@ Set the specified CSS class.
 #### `addClass`
 
 ``` purescript
-addClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+addClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Add the specified CSS class.
@@ -134,7 +134,7 @@ Add the specified CSS class.
 #### `removeClass`
 
 ``` purescript
-removeClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+removeClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Remove the specified CSS class.
@@ -142,7 +142,7 @@ Remove the specified CSS class.
 #### `setProp`
 
 ``` purescript
-setProp :: forall a eff. String -> a -> JQuery -> Eff (dom :: DOM | eff) JQuery
+setProp :: forall a eff. String -> a -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Set a single property.
@@ -158,7 +158,7 @@ Get a property value.
 #### `append`
 
 ``` purescript
-append :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
+append :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Append the first node as a child node of the second.
@@ -166,7 +166,7 @@ Append the first node as a child node of the second.
 #### `remove`
 
 ``` purescript
-remove :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+remove :: forall eff. JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Remove selected elements.
@@ -174,7 +174,7 @@ Remove selected elements.
 #### `clear`
 
 ``` purescript
-clear :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+clear :: forall eff. JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Remove child elements.
@@ -182,7 +182,7 @@ Remove child elements.
 #### `before`
 
 ``` purescript
-before :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) JQuery
+before :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Insert an element before another.
@@ -190,7 +190,7 @@ Insert an element before another.
 #### `appendText`
 
 ``` purescript
-appendText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+appendText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Append text as a child node.
@@ -214,7 +214,7 @@ Get the text content of an element.
 #### `setText`
 
 ``` purescript
-setText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+setText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Set the text content of an element.
@@ -230,7 +230,7 @@ Get the html content of an element.
 #### `setHtml`
 
 ``` purescript
-setHtml :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) JQuery
+setHtml :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Set the html content of an element
@@ -246,7 +246,7 @@ Get the value of a form element.
 #### `setValue`
 
 ``` purescript
-setValue :: forall eff a. a -> JQuery -> Eff (dom :: DOM | eff) JQuery
+setValue :: forall eff a. a -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Set the value of a form element.
@@ -254,7 +254,7 @@ Set the value of a form element.
 #### `toggle`
 
 ``` purescript
-toggle :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+toggle :: forall eff. JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Toggle visibility of an element.
@@ -262,7 +262,7 @@ Toggle visibility of an element.
 #### `setVisible`
 
 ``` purescript
-setVisible :: forall eff. Boolean -> JQuery -> Eff (dom :: DOM | eff) JQuery
+setVisible :: forall eff. Boolean -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Set the visibility of an element.
@@ -270,7 +270,7 @@ Set the visibility of an element.
 #### `hide`
 
 ``` purescript
-hide :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+hide :: forall eff. JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Hide elements.
@@ -278,7 +278,7 @@ Hide elements.
 #### `display`
 
 ``` purescript
-display :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+display :: forall eff. JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Show elements.
@@ -286,7 +286,7 @@ Show elements.
 #### `on`
 
 ``` purescript
-on :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
+on :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Register an event handler.
@@ -294,7 +294,7 @@ Register an event handler.
 #### `on'`
 
 ``` purescript
-on' :: forall eff a. String -> Selector -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) JQuery
+on' :: forall eff a. String -> Selector -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) Unit
 ```
 
 Register an event handler for elements matching a selector.

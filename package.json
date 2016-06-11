@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {
+    "example": "pulp test -r cat > html/index.js"
+  },
+  "devDependencies": {
+    "pulp": "^9.0.0"
+  }
+}

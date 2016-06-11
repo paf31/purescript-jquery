@@ -1,8 +1,6 @@
 /* global exports */
 "use strict";
 
-// module Control.Monad.Eff.JQuery
-
 exports.ready = function(func) {
     return function() {
         jQuery(document).ready(func);
@@ -47,7 +45,7 @@ exports.setAttr = function(attr) {
     return function(val) {
         return function(ob) {
             return function() {
-                return ob.attr(attr, val);
+                ob.attr(attr, val);
             };
         };
     };
@@ -56,7 +54,7 @@ exports.setAttr = function(attr) {
 exports.attr = function(attrs) {
     return function(ob) {
         return function() {
-            return ob.attr(attrs);
+            ob.attr(attrs);
         };
     };
 };
@@ -64,7 +62,7 @@ exports.attr = function(attrs) {
 exports.css = function(props) {
     return function(ob) {
         return function() {
-            return ob.css(props);
+            ob.css(props);
         };
     };
 };
@@ -80,7 +78,7 @@ exports.hasClass = function(cls) {
 exports.toggleClass = function(cls) {
     return function(ob) {
         return function() {
-            return ob.toggleClass(cls);
+            ob.toggleClass(cls);
         };
     };
 };
@@ -89,7 +87,7 @@ exports.setClass = function(cls) {
     return function(flag) {
         return function(ob) {
             return function() {
-                return ob.toggleClass(cls, flag);
+                ob.toggleClass(cls, flag);
             };
         };
     };
@@ -99,7 +97,7 @@ exports.setProp = function(p) {
     return function(val) {
         return function(ob) {
             return function() {
-                return ob.prop(p, val);
+                ob.prop(p, val);
             };
         };
     };
@@ -116,7 +114,7 @@ exports.getProp = function(p) {
 exports.append = function(ob1) {
     return function(ob) {
         return function() {
-            return ob.append(ob1);
+            ob.append(ob1);
         };
     };
 };
@@ -124,7 +122,7 @@ exports.append = function(ob1) {
 exports.appendText = function(s) {
     return function(ob) {
         return function() {
-            return ob.append(s);
+            ob.append(s);
         };
     };
 };
@@ -135,20 +133,20 @@ exports.body = function() {
 
 exports.remove = function(ob) {
     return function() {
-        return ob.remove();
+        ob.remove();
     };
 };
 
 exports.clear = function(ob) {
     return function() {
-        return ob.empty();
+        ob.empty();
     };
 };
 
 exports.before = function(ob) {
     return function(ob1) {
         return function() {
-            return ob1.before(ob);
+            ob1.before(ob);
         };
     };
 };
@@ -162,7 +160,7 @@ exports.getText = function(ob) {
 exports.setText = function(text) {
     return function(ob) {
         return function() {
-            return ob.text(text);
+            ob.text(text);
         };
     };
 };
@@ -176,7 +174,7 @@ exports.getHtml = function(ob) {
 exports.setHtml = function(html) {
     return function(ob) {
         return function() {
-            return ob.html(html);
+            ob.html(html);
         };
     };
 };
@@ -190,21 +188,21 @@ exports.getValue = function(ob) {
 exports.setValue = function(val) {
     return function(ob) {
         return function() {
-            return ob.val(val);
+            ob.val(val);
         };
     };
 };
 
 exports.toggle = function(ob) {
     return function() {
-        return ob.toggle();
+        ob.toggle();
     };
 };
 
 exports.setVisible = function(flag) {
     return function(ob) {
         return function() {
-            return ob.toggle(flag);
+            ob.toggle(flag);
         };
     };
 };
@@ -213,7 +211,7 @@ exports.on = function(evt) {
     return function(act) {
         return function(ob) {
             return function() {
-                return ob.on(evt, function(e) {
+                ob.on(evt, function(e) {
                     act(e)(jQuery(this))();
                 });
             };
@@ -226,7 +224,7 @@ exports["on'"] = function(evt) {
         return function(act) {
             return function(ob) {
                 return function() {
-                    return ob.on(evt, sel, function(e) {
+                    ob.on(evt, sel, function(e) {
                         act(e)(jQuery(this))();
                     });
                 };
