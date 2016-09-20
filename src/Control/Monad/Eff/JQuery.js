@@ -233,6 +233,12 @@ exports["on'"] = function(evt) {
     };
 };
 
+exports.toArray = function(ob) {
+    return function() {
+        return ob.toArray().map(function(a) { return jQuery(a); });
+    };
+};
+
 exports.preventDefault = function(e) {
     return function() {
         e.preventDefault();

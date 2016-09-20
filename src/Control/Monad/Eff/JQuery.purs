@@ -241,6 +241,9 @@ foreign import on'
   -> JQuery
   -> Eff (dom :: DOM | eff) Unit
 
+-- | Convert the elements in the JQuery into an array of JQuery.
+foreign import toArray :: forall eff. JQuery -> Eff (dom :: DOM | eff) (Array JQuery)
+
 -- | Prevent the default action for an event.
 foreign import preventDefault
   :: forall eff
