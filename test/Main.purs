@@ -6,7 +6,7 @@ import Data.Either (Either(..))
 import Data.Foreign.Class (read)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
-import Control.Monad.Eff.JQuery (JQuery, JQueryEvent, on, append, css, create, appendText, body, ready, setText, getValue)
+import Control.Monad.Eff.JQuery (JQuery, HTML, JQueryEvent, on, append, css, create, appendText, body, ready, setText, getValue)
 import DOM (DOM)
 import Partial.Unsafe (unsafePartial)
 
@@ -35,10 +35,10 @@ main =
     on "change" (handleChange input greeting) input
   where
     handleChange
-      :: JQuery
-      -> JQuery
+      :: (JQuery HTML)
+      -> (JQuery HTML)
       -> JQueryEvent
-      -> JQuery
+      -> (JQuery HTML)
       -> Eff ( dom :: DOM
              , console :: CONSOLE
              | eff

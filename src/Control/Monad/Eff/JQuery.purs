@@ -5,11 +5,13 @@ module Control.Monad.Eff.JQuery where
 
 import Prelude (Unit)
 import Control.Monad.Eff (Eff)
-import Data.Foreign (Foreign)
 import DOM (DOM)
+import Data.Foreign (Foreign)
 
 -- | The type of collections of jQuery-wrapped nodes.
-foreign import data JQuery :: *
+foreign import data JQuery :: * -> *
+foreign import data XML :: *
+foreign import data HTML :: *
 
 -- | Type of jQuery event objects.
 foreign import data JQueryEvent :: *
@@ -25,70 +27,77 @@ foreign import ready
 
 -- | Wrapper function for jQuery selection $('..')
 foreign import select
-  :: forall eff
+  :: forall eff a
    . Selector
-  -> Eff (dom :: DOM | eff) JQuery
+  -> Eff (dom :: DOM | eff) (JQuery a)
 
 -- | Find child nodes matching a selector
 foreign import find
-  :: forall eff
+  :: forall eff a
    . Selector
-  -> JQuery
-  -> Eff (dom :: DOM | eff) JQuery
+  -> (JQuery a)
+  -> Eff (dom :: DOM | eff) (JQuery a)
 
 -- | Get the parent elements.
 foreign import parent
-  :: forall eff
-   . JQuery
-  -> Eff (dom :: DOM | eff) JQuery
+  :: forall eff a
+   . (JQuery a)
+  -> Eff (dom :: DOM | eff) (JQuery a)
 
 -- | Find the closest element matching the selector.
 foreign import closest
-  :: forall eff
+  :: forall eff a
    . Selector
-   -> JQuery
-   -> Eff (dom :: DOM | eff) JQuery
+   -> (JQuery a)
+   -> Eff (dom :: DOM | eff) (JQuery a)
 
 -- | Create an element.
 foreign import create
-  :: forall eff
+  :: forall eff a
    . String
-  -> Eff (dom :: DOM | eff) JQuery
+  -> Eff (dom :: DOM | eff) (JQuery a)
 
 -- | Set a single attribute.
 foreign import setAttr
-  :: forall eff a
+  :: forall eff a b
    . String
   -> a
-  -> JQuery
+  -> (JQuery b)
   -> Eff (dom :: DOM | eff) Unit
+
+-- | Get a single attribute.
+foreign import getAttr
+  :: forall eff a
+   . String
+  -> (JQuery a)
+  -> Eff (dom :: DOM | eff) Foreign
 
 -- | Set multiple attributes.
 foreign import attr
-  :: forall eff attr
+  :: forall eff a attr
    . { | attr }
-  -> JQuery
+  -> (JQuery a)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Set CSS properties.
 foreign import css
   :: forall eff css
    . { | css }
-  -> JQuery
+  -> (JQuery HTML)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Test if an element has a CSS class.
 foreign import hasClass
   :: forall eff
    . String
-  -> JQuery
+  -> (JQuery HTML)
   -> Eff (dom :: DOM | eff) Boolean
 
 -- | Toggle the specified CSS class.
 foreign import toggleClass
   :: forall eff
    . String
-  -> JQuery
+  -> (JQuery HTML)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Set the specified CSS class.
@@ -96,15 +105,15 @@ foreign import setClass
   :: forall eff
    . String
   -> Boolean
-  -> JQuery
+  -> (JQuery HTML)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Add the specified CSS class.
-addClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
+addClass :: forall eff. String -> (JQuery HTML) -> Eff (dom :: DOM | eff) Unit
 addClass cls = setClass cls true
 
 -- | Remove the specified CSS class.
-removeClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
+removeClass :: forall eff. String -> (JQuery HTML) -> Eff (dom :: DOM | eff) Unit
 removeClass cls = setClass cls false
 
 -- | Set a single property.
@@ -112,115 +121,115 @@ foreign import setProp
   :: forall a eff
    . String
   -> a
-  -> JQuery
+  -> (JQuery HTML)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Get a property value.
 foreign import getProp
   :: forall eff
    . String
-  -> JQuery
+  -> (JQuery HTML)
   -> Eff (dom :: DOM | eff) Foreign
 
 -- | Append the first node as a child node of the second.
 foreign import append
-  :: forall eff
-   . JQuery
-  -> JQuery
+  :: forall eff a
+   . (JQuery a)
+  -> (JQuery a)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Remove selected elements.
 foreign import remove
-  :: forall eff
-   . JQuery
+  :: forall eff a
+   . (JQuery a)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Remove child elements.
 foreign import clear
-  :: forall eff
-   . JQuery
+  :: forall eff a
+   . (JQuery a)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Insert an element before another.
 foreign import before
-  :: forall eff
-   . JQuery
-  -> JQuery -> Eff (dom :: DOM | eff) Unit
+  :: forall eff a
+   . (JQuery a)
+  -> (JQuery a) -> Eff (dom :: DOM | eff) Unit
 
 -- | Append text as a child node.
 foreign import appendText
-  :: forall eff
+  :: forall eff a
    . String
-  -> JQuery -> Eff (dom :: DOM | eff) Unit
+  -> (JQuery a) -> Eff (dom :: DOM | eff) Unit
 
 -- | Get the document body node.
 foreign import body
   :: forall eff
-   . Eff (dom :: DOM | eff) JQuery
+   . Eff (dom :: DOM | eff) (JQuery HTML)
 
 -- | Get the text content of an element.
 foreign import getText
-  :: forall eff
-   . JQuery
+  :: forall eff a
+   . (JQuery a)
   -> Eff (dom :: DOM | eff) String
 
 -- | Set the text content of an element.
 foreign import setText
-  :: forall eff
+  :: forall eff a
    . String
-  -> JQuery
+  -> (JQuery a)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Get the html content of an element.
 foreign import getHtml
   :: forall eff
-   . JQuery
+   . (JQuery HTML)
   -> Eff (dom :: DOM | eff) String
 
 -- | Set the html content of an element
 foreign import setHtml
   :: forall eff
    . String
-  -> JQuery
+  -> (JQuery HTML)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Get the value of a form element.
 foreign import getValue
   :: forall eff
-   . JQuery
+   . (JQuery HTML)
   -> Eff (dom :: DOM | eff) Foreign
 
 -- | Set the value of a form element.
 foreign import setValue
   :: forall eff a
    . a
-  -> JQuery
+  -> (JQuery HTML)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Toggle visibility of an element.
 foreign import toggle
   :: forall eff
-   . JQuery
+   . (JQuery HTML)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Set the visibility of an element.
 foreign import setVisible
   :: forall eff
    . Boolean
- -> JQuery
+ -> (JQuery HTML)
  -> Eff (dom :: DOM | eff) Unit
 
 -- | Hide elements.
 hide
   :: forall eff
-   . JQuery
+   . (JQuery HTML)
   -> Eff (dom :: DOM | eff) Unit
 hide = setVisible false
 
 -- | Show elements.
 display
   :: forall eff
-   . JQuery
+   . (JQuery HTML)
   -> Eff (dom :: DOM | eff) Unit
 display = setVisible true
 
@@ -228,8 +237,8 @@ display = setVisible true
 foreign import on
   :: forall eff a
    . String
-   -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a)
-   -> JQuery
+   -> (JQueryEvent -> (JQuery HTML) -> Eff (dom :: DOM | eff) a)
+   -> (JQuery HTML)
    -> Eff (dom :: DOM | eff) Unit
 
 -- | Register an event handler for elements matching a selector.
@@ -237,8 +246,8 @@ foreign import on'
   :: forall eff a
    . String
   -> Selector
-  -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a)
-  -> JQuery
+  -> (JQueryEvent -> (JQuery HTML) -> Eff (dom :: DOM | eff) a)
+  -> (JQuery HTML)
   -> Eff (dom :: DOM | eff) Unit
 
 -- | Prevent the default action for an event.
@@ -258,3 +267,8 @@ foreign import stopImmediatePropagation
   :: forall eff
    . JQueryEvent
   -> Eff (dom :: DOM | eff) Unit
+
+-- | Parse string of XML into a document.
+foreign import parseXML
+  :: String
+  -> (JQuery XML)

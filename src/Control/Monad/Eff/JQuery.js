@@ -51,6 +51,14 @@ exports.setAttr = function(attr) {
     };
 };
 
+exports.getAttr = function(attr) {
+  return function(ob) {
+    return function() {
+      return ob.attr(attr);
+    }
+  }
+}
+
 exports.attr = function(attrs) {
     return function(ob) {
         return function() {
@@ -249,4 +257,8 @@ exports.stopImmediatePropagation = function(e) {
     return function() {
         e.stopImmediatePropagation();
     };
+};
+
+exports.parseXML = function(xml_string) {
+    return jQuery(jQuery.parseXML(xml_string));
 };
