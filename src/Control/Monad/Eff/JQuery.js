@@ -207,6 +207,17 @@ exports.setVisible = function(flag) {
     };
 };
 
+exports.toArray = function(ob) {
+    return function() {
+        var els = ob.toArray();
+        var copy = [];
+        for (var i = 0; i < els.length; i++) {
+            copy.push(jQuery(els[i]));
+        }
+        return copy;
+    };
+};
+
 exports.on = function(evt) {
     return function(act) {
         return function(ob) {
@@ -248,5 +259,41 @@ exports.stopPropagation = function(e) {
 exports.stopImmediatePropagation = function(e) {
     return function() {
         e.stopImmediatePropagation();
+    };
+};
+
+exports.getTarget = function(e) {
+    return function() {
+        return jQuery(e.target);
+    };
+};
+
+exports.getCurrentTarget = function(e) {
+    return function() {
+        return jQuery(e.currentTarget);
+    };
+};
+
+exports.getPageX = function(e) {
+    return function() {
+        return jQuery(e.pageX);
+    };
+};
+
+exports.getPageY = function(e) {
+    return function() {
+        return jQuery(e.pageY);
+    };
+};
+
+exports.getWhich = function(e) {
+    return function() {
+        return jQuery(e.which);
+    };
+};
+
+exports.getMetaKey = function(e) {
+    return function() {
+        return jQuery(e.metaKey);
     };
 };

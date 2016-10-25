@@ -299,6 +299,14 @@ on' :: forall eff a. String -> Selector -> (JQueryEvent -> JQuery -> Eff (dom ::
 
 Register an event handler for elements matching a selector.
 
+#### `toArray`
+
+``` purescript
+toArray :: forall eff. JQuery -> Eff (dom :: DOM | eff) (Array JQuery)
+```
+
+Get an array of matching elements.
+
 #### `preventDefault`
 
 ``` purescript
@@ -322,5 +330,53 @@ stopImmediatePropagation :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Un
 ```
 
 Stop immediate propagation an event.
+
+#### `getTarget`
+
+``` purescript
+getTarget :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) JQuery
+```
+
+Get the `target` propery of the event object.
+
+#### `getCurrentTarget`
+
+``` purescript
+getCurrentTarget :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) JQuery
+```
+
+Get the `currentTarget` property from the event object.
+
+#### `getPageX`
+
+``` purescript
+getPageX :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Number
+```
+
+Get the `pageX` property from the event object.
+
+#### `getPageY`
+
+``` purescript
+getPageY :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Number
+```
+
+Get the `pageY` property from the event object.
+
+#### `getWhich`
+
+``` purescript
+getWhich :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Int
+```
+
+Get the `which` property from the event object.
+
+#### `getMetaKey`
+
+``` purescript
+getMetaKey :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Boolean
+```
+
+Get the `metaKey` property from the event object.
 
 

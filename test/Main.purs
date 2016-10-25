@@ -2,11 +2,12 @@ module Test.Main where
 
 import Prelude hiding (append)
 
-import Data.Either (Either(..))
-import Data.Foreign.Class (read)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
 import Control.Monad.Eff.JQuery (JQuery, JQueryEvent, on, append, css, create, appendText, body, ready, setText, getValue)
+import Control.Monad.Except (runExcept)
+import Data.Foreign.Class (read)
+import Data.Foldable (for_)
 import DOM (DOM)
 import Partial.Unsafe (unsafePartial)
 
@@ -44,6 +45,7 @@ main =
              | eff
              ) Unit
     handleChange input greeting _ _ = unsafePartial do
-      Right name <- read <$> getValue input
-      log $ "Name changed to " <> name
-      setText ("Hello, " <> name) greeting
+      val <- getValue input
+      for_ (runExcept (read val)) \name -> do
+        log $ "Name changed to " <> name
+        setText ("Hello, " <> name) greeting

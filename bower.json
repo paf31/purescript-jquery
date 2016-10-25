@@ -15,16 +15,16 @@
     "Gruntfile.js",
     "package.json"
   ],
-  "dependencies": {
-    "purescript-dom": "^2.0.0",
-    "purescript-eff": "^1.0.0",
-    "purescript-foreign": "^1.0.0"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/paf31/purescript-jquery.git"
   },
+  "dependencies": {
+    "purescript-dom": "^3.0.0",
+    "purescript-eff": "^2.0.0",
+    "purescript-foreign": "^3.0.0"
+  },
   "devDependencies": {
-    "purescript-console": "^1.0.0"
+    "purescript-console": "^2.0.0"
   }
 }

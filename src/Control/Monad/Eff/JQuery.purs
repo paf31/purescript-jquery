@@ -241,6 +241,12 @@ foreign import on'
   -> JQuery
   -> Eff (dom :: DOM | eff) Unit
 
+-- | Get an array of matching elements.
+foreign import toArray
+  :: forall eff
+   . JQuery
+  -> Eff (dom :: DOM | eff) (Array JQuery)
+
 -- | Prevent the default action for an event.
 foreign import preventDefault
   :: forall eff
@@ -258,3 +264,39 @@ foreign import stopImmediatePropagation
   :: forall eff
    . JQueryEvent
   -> Eff (dom :: DOM | eff) Unit
+
+-- | Get the `target` propery of the event object.
+foreign import getTarget
+  :: forall eff
+   . JQueryEvent
+  -> Eff (dom :: DOM | eff) JQuery
+
+-- | Get the `currentTarget` property from the event object.
+foreign import getCurrentTarget
+  :: forall eff
+   . JQueryEvent
+  -> Eff (dom :: DOM | eff) JQuery
+
+-- | Get the `pageX` property from the event object.
+foreign import getPageX
+  :: forall eff
+   . JQueryEvent
+  -> Eff (dom :: DOM | eff) Number
+
+-- | Get the `pageY` property from the event object.
+foreign import getPageY
+  :: forall eff
+   . JQueryEvent
+  -> Eff (dom :: DOM | eff) Number
+
+-- | Get the `which` property from the event object.
+foreign import getWhich
+  :: forall eff
+   . JQueryEvent
+  -> Eff (dom :: DOM | eff) Int
+
+-- | Get the `metaKey` property from the event object.
+foreign import getMetaKey
+  :: forall eff
+   . JQueryEvent
+  -> Eff (dom :: DOM | eff) Boolean
