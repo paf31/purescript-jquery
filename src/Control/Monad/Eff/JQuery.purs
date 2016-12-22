@@ -300,3 +300,16 @@ foreign import getMetaKey
   :: forall eff
    . JQueryEvent
   -> Eff (dom :: DOM | eff) Boolean
+
+-- | Create a deep copy of the set of matched elements.
+foreign import clone
+  :: forall eff
+   . JQuery
+  -> Eff (dom :: DOM | eff) JQuery
+
+-- | Create a deep copy of the set of matched elements,
+-- | including event handlers and element data.
+foreign import cloneWithDataAndEvents
+  :: forall eff
+   . JQuery
+  -> Eff (dom :: DOM | eff) JQuery
