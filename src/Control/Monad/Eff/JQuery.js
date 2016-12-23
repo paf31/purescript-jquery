@@ -297,3 +297,16 @@ exports.getMetaKey = function(e) {
         return jQuery(e.metaKey);
     };
 };
+
+
+exports.clone = function(ob) {
+    return function() {
+        return ob.clone();
+    };
+};
+
+exports.cloneWithDataAndEvents = function(ob) {
+    return function() {
+        return ob.clone(true);
+    };
+};
