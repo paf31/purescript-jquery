@@ -9,10 +9,10 @@ import Data.Foreign (Foreign)
 import DOM (DOM)
 
 -- | The type of collections of jQuery-wrapped nodes.
-foreign import data JQuery :: *
+foreign import data JQuery :: Type
 
 -- | Type of jQuery event objects.
-foreign import data JQueryEvent :: *
+foreign import data JQueryEvent :: Type
 
 -- | A type synonym to help readability of type signatures.
 type Selector = String
