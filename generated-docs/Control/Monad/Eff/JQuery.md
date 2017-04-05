@@ -6,7 +6,7 @@ the jQuery library.
 #### `JQuery`
 
 ``` purescript
-data JQuery :: *
+data JQuery :: Type
 ```
 
 The type of collections of jQuery-wrapped nodes.
@@ -14,7 +14,7 @@ The type of collections of jQuery-wrapped nodes.
 #### `JQueryEvent`
 
 ``` purescript
-data JQueryEvent :: *
+data JQueryEvent :: Type
 ```
 
 Type of jQuery event objects.
@@ -378,5 +378,22 @@ getMetaKey :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Boolean
 ```
 
 Get the `metaKey` property from the event object.
+
+#### `clone`
+
+``` purescript
+clone :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+```
+
+Create a deep copy of the set of matched elements.
+
+#### `cloneWithDataAndEvents`
+
+``` purescript
+cloneWithDataAndEvents :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+```
+
+Create a deep copy of the set of matched elements,
+including event handlers and element data.
 
 

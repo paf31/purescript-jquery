@@ -6,7 +6,7 @@ import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, log)
 import Control.Monad.Eff.JQuery (JQuery, JQueryEvent, on, append, css, create, appendText, body, ready, setText, getValue)
 import Control.Monad.Except (runExcept)
-import Data.Foreign.Class (read)
+import Data.Foreign (readString)
 import Data.Foldable (for_)
 import DOM (DOM)
 import Partial.Unsafe (unsafePartial)
@@ -46,6 +46,6 @@ main =
              ) Unit
     handleChange input greeting _ _ = unsafePartial do
       val <- getValue input
-      for_ (runExcept (read val)) \name -> do
+      for_ (runExcept (readString val)) \name -> do
         log $ "Name changed to " <> name
         setText ("Hello, " <> name) greeting

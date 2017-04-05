@@ -5,7 +5,7 @@
 
 PureScript type declarations for jQuery.
 
-- [Module Documentation](docs/Control/Monad/Eff/JQuery.md)
+- [Module Documentation](generated-docs/Control/Monad/Eff/JQuery.md)
 - [Example](test/Main.purs)
 
 ## Installation
