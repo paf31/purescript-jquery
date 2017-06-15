@@ -244,6 +244,22 @@ exports["on'"] = function(evt) {
     };
 };
 
+
+exports.off = function(evt) {
+    return function(ob) {
+        return function() {
+            return ob.off(evt);
+        };
+    };
+};
+
+
+exports["off'"] = function(ob) {
+    return function() {
+        return ob.off();
+    };
+};
+
 exports.preventDefault = function(e) {
     return function() {
         e.preventDefault();

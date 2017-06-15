@@ -241,6 +241,19 @@ foreign import on'
   -> JQuery
   -> Eff (dom :: DOM | eff) Unit
 
+-- | Remove an event handler.
+foreign import off
+  :: forall eff a
+   . String
+   -> JQuery
+   -> Eff (dom :: DOM | eff) Unit
+
+-- | Remove all event handler.
+foreign import off'
+  :: forall eff a
+   . JQuery
+   -> Eff (dom :: DOM | eff) Unit
+
 -- | Get an array of matching elements.
 foreign import toArray
   :: forall eff
