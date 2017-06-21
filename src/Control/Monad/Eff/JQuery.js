@@ -51,6 +51,14 @@ exports.setAttr = function(attr) {
     };
 };
 
+exports.getAttrImpl = function(attr) {
+    return function(ob) {
+        return function() {
+            return ob.attr(attr);
+        };
+    };
+};
+
 exports.attr = function(attrs) {
     return function(ob) {
         return function() {

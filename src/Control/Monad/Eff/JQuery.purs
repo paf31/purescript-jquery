@@ -12,6 +12,7 @@ module Control.Monad.Eff.JQuery
   , closest
   , create
   , setAttr
+  , getAttr
   , attr
   , css
   , hasClass
@@ -57,8 +58,10 @@ module Control.Monad.Eff.JQuery
 
 import Prelude (Unit)
 import Control.Monad.Eff (Eff)
-import Data.Foreign (Foreign)
+import Data.Foreign (Foreign, isUndefined, unsafeFromForeign)
 import DOM (DOM)
+import Data.Functor (map)
+import Data.Maybe (Maybe(..))
 
 -- | The type of collections of jQuery-wrapped nodes.
 foreign import data JQuery :: Type
@@ -114,6 +117,24 @@ foreign import setAttr
   -> a
   -> JQuery
   -> Eff (dom :: DOM | eff) Unit
+
+foreign import getAttrImpl
+  :: forall eff
+   . String
+  -> JQuery
+  -> Eff (dom :: DOM | eff) Foreign
+
+-- | Get an attribute value.
+getAttr 
+  :: forall eff
+   . String
+   -> JQuery
+   -> Eff (dom :: DOM | eff) (Maybe String)
+getAttr str jq = map foreignToString (getAttrImpl str jq)
+  where foreignToString f =
+          if isUndefined f
+            then Nothing
+            else Just (unsafeFromForeign f)
 
 -- | Set multiple attributes.
 foreign import attr
