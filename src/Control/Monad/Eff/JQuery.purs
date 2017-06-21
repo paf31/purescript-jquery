@@ -1,7 +1,59 @@
 -- | This module defines foreign types and functions for working with
 -- | the jQuery library.
 
-module Control.Monad.Eff.JQuery where
+module Control.Monad.Eff.JQuery
+  ( JQuery
+  , JQueryEvent
+  , Selector
+  , ready
+  , select
+  , find
+  , parent
+  , closest
+  , create
+  , setAttr
+  , attr
+  , css
+  , hasClass
+  , toggleClass
+  , setClass
+  , addClass
+  , removeClass
+  , setProp
+  , getProp
+  , append
+  , remove
+  , clear
+  , before
+  , appendText
+  , body
+  , getText
+  , setText
+  , getHtml
+  , setHtml
+  , getValue
+  , setValue
+  , toggle
+  , setVisible
+  , hide
+  , display
+  , on
+  , on'
+  , off
+  , off'
+  , toArray
+  , preventDefault
+  , stopPropagation
+  , stopImmediatePropagation
+  , getTarget
+  , getCurrentTarget
+  , getPageX
+  , getPageY
+  , getWhich
+  , getMetaKey
+  , clone
+  , cloneWithDataAndEvents
+  ) where
 
 import Prelude (Unit)
 import Control.Monad.Eff (Eff)
