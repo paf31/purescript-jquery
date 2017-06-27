@@ -300,25 +300,25 @@ exports.getCurrentTarget = function(e) {
 
 exports.getPageX = function(e) {
     return function() {
-        return jQuery(e.pageX);
+        return e.pageX;
     };
 };
 
 exports.getPageY = function(e) {
     return function() {
-        return jQuery(e.pageY);
+        return e.pageY;
     };
 };
 
 exports.getWhich = function(e) {
     return function() {
-        return jQuery(e.which);
+        return e.which;
     };
 };
 
 exports.getMetaKey = function(e) {
     return function() {
-        return jQuery(e.metaKey);
+        return e.metaKey;
     };
 };
 
