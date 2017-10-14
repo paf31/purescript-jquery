@@ -127,6 +127,14 @@ exports.append = function(ob1) {
     };
 };
 
+exports.unsafeAppendHtml = function(s) {
+    return function(ob) {
+        return function() {
+            ob.append(s);
+        };
+    };
+};
+
 exports.appendText = function(s) {
     return function(ob) {
         return function() {
