@@ -127,10 +127,18 @@ exports.append = function(ob1) {
     };
 };
 
-exports.appendText = function(s) {
+exports.unsafeAppendHtml = function(s) {
     return function(ob) {
         return function() {
             ob.append(s);
+        };
+    };
+};
+
+exports.appendText = function(s) {
+    return function(ob) {
+        return function() {
+            ob.append(document.createTextNode(s));
         };
     };
 };

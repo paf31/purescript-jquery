@@ -220,6 +220,14 @@ foreign import before
    . JQuery
   -> JQuery -> Eff (dom :: DOM | eff) Unit
 
+-- | Append text as a child node. Importantly, if jQuery recognises the String
+-- | as HTML, the parsed HTML will be appended, rather than the string. Hence,
+-- | this function can be dangerous when dealing with unchecked user input.
+foreign import unsafeAppendHtml
+  :: forall eff
+   . String
+  -> JQuery -> Eff (dom :: DOM | eff) Unit
+
 -- | Append text as a child node.
 foreign import appendText
   :: forall eff
