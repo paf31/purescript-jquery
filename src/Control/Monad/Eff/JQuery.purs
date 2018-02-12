@@ -324,14 +324,14 @@ foreign import on'
 
 -- | Remove an event handler.
 foreign import off
-  :: forall eff a
+  :: forall eff
    . String
    -> JQuery
    -> Eff (dom :: DOM | eff) Unit
 
 -- | Remove all event handler.
 foreign import off'
-  :: forall eff a
+  :: forall eff
    . JQuery
    -> Eff (dom :: DOM | eff) Unit
 
