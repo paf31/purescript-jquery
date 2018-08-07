@@ -38,7 +38,7 @@ main =
         setText ("Hello, " <> name) greeting
 ```
 
-from <test/Main.purs>
+from [test/Main.purs](test/Main.purs)
 
 ## Installation
 
