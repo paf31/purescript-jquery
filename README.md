@@ -5,8 +5,40 @@
 
 PureScript type declarations for jQuery.
 
-- [Module Documentation](generated-docs/Control/Monad/Eff/JQuery.md)
-- [Example](test/Main.purs)
+- [Module Documentation](generated-docs/JQuery.md)
+
+## Example
+
+```purs
+main =
+  ready $ do
+    -- Get the document body
+    body <- body
+
+    -- Create a text box
+    div   <- create "<div>"
+    input <- create "<input>"
+    appendText "Your Name: " div
+    append input div
+    append div body
+
+    -- Create a paragraph to display a greeting
+    greeting <- create "<p>"
+    css { color: "red" } greeting
+    append greeting body
+
+    -- Listen for change events on the text box
+    on "change" (handleChange input greeting) input
+  where
+    handleChange :: JQuery -> JQuery -> JQueryEvent -> JQuery -> Effect Unit
+    handleChange input greeting _ _ = unsafePartial do
+      val <- getValue input
+      for_ (runExcept (readString val)) \name -> do
+        log $ "Name changed to " <> name
+        setText ("Hello, " <> name) greeting
+```
+
+from <test/Main.purs>
 
 ## Installation
 
