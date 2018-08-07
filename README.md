@@ -5,7 +5,7 @@
 
 PureScript type declarations for jQuery.
 
-- [Module Documentation](generated-docs/JQuery.md)
+- [Module Documentation](generated-docs/JQuery.md) or on [Pursuit](https://pursuit.purescript.org/packages/purescript-jquery/5.0.0)
 
 ## Example
 
