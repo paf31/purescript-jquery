@@ -1,4 +1,4 @@
-## Module Control.Monad.Eff.JQuery
+## Module JQuery
 
 This module defines foreign types and functions for working with
 the jQuery library.
@@ -30,7 +30,7 @@ A type synonym to help readability of type signatures.
 #### `ready`
 
 ``` purescript
-ready :: forall eff a. Eff (dom :: DOM | eff) a -> Eff (dom :: DOM | eff) Unit
+ready :: forall a. Effect a -> Effect Unit
 ```
 
 Run a function when the document is loaded.
@@ -38,7 +38,7 @@ Run a function when the document is loaded.
 #### `select`
 
 ``` purescript
-select :: forall eff. Selector -> Eff (dom :: DOM | eff) JQuery
+select :: Selector -> Effect JQuery
 ```
 
 Wrapper function for jQuery selection $('..')
@@ -46,7 +46,7 @@ Wrapper function for jQuery selection $('..')
 #### `find`
 
 ``` purescript
-find :: forall eff. Selector -> JQuery -> Eff (dom :: DOM | eff) JQuery
+find :: Selector -> JQuery -> Effect JQuery
 ```
 
 Find child nodes matching a selector
@@ -54,7 +54,7 @@ Find child nodes matching a selector
 #### `parent`
 
 ``` purescript
-parent :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+parent :: JQuery -> Effect JQuery
 ```
 
 Get the parent elements.
@@ -62,7 +62,7 @@ Get the parent elements.
 #### `closest`
 
 ``` purescript
-closest :: forall eff. Selector -> JQuery -> Eff (dom :: DOM | eff) JQuery
+closest :: Selector -> JQuery -> Effect JQuery
 ```
 
 Find the closest element matching the selector.
@@ -70,7 +70,7 @@ Find the closest element matching the selector.
 #### `create`
 
 ``` purescript
-create :: forall eff. String -> Eff (dom :: DOM | eff) JQuery
+create :: String -> Effect JQuery
 ```
 
 Create an element.
@@ -78,15 +78,23 @@ Create an element.
 #### `setAttr`
 
 ``` purescript
-setAttr :: forall eff a. String -> a -> JQuery -> Eff (dom :: DOM | eff) Unit
+setAttr :: forall a. String -> a -> JQuery -> Effect Unit
 ```
 
 Set a single attribute.
 
+#### `getAttr`
+
+``` purescript
+getAttr :: String -> JQuery -> Effect (Maybe String)
+```
+
+Get an attribute value.
+
 #### `attr`
 
 ``` purescript
-attr :: forall eff attr. {  | attr } -> JQuery -> Eff (dom :: DOM | eff) Unit
+attr :: forall attr. {  | attr } -> JQuery -> Effect Unit
 ```
 
 Set multiple attributes.
@@ -94,7 +102,7 @@ Set multiple attributes.
 #### `css`
 
 ``` purescript
-css :: forall eff css. {  | css } -> JQuery -> Eff (dom :: DOM | eff) Unit
+css :: forall css. {  | css } -> JQuery -> Effect Unit
 ```
 
 Set CSS properties.
@@ -102,7 +110,7 @@ Set CSS properties.
 #### `hasClass`
 
 ``` purescript
-hasClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Boolean
+hasClass :: String -> JQuery -> Effect Boolean
 ```
 
 Test if an element has a CSS class.
@@ -110,7 +118,7 @@ Test if an element has a CSS class.
 #### `toggleClass`
 
 ``` purescript
-toggleClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
+toggleClass :: String -> JQuery -> Effect Unit
 ```
 
 Toggle the specified CSS class.
@@ -118,7 +126,7 @@ Toggle the specified CSS class.
 #### `setClass`
 
 ``` purescript
-setClass :: forall eff. String -> Boolean -> JQuery -> Eff (dom :: DOM | eff) Unit
+setClass :: String -> Boolean -> JQuery -> Effect Unit
 ```
 
 Set the specified CSS class.
@@ -126,7 +134,7 @@ Set the specified CSS class.
 #### `addClass`
 
 ``` purescript
-addClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
+addClass :: String -> JQuery -> Effect Unit
 ```
 
 Add the specified CSS class.
@@ -134,7 +142,7 @@ Add the specified CSS class.
 #### `removeClass`
 
 ``` purescript
-removeClass :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
+removeClass :: String -> JQuery -> Effect Unit
 ```
 
 Remove the specified CSS class.
@@ -142,7 +150,7 @@ Remove the specified CSS class.
 #### `setProp`
 
 ``` purescript
-setProp :: forall a eff. String -> a -> JQuery -> Eff (dom :: DOM | eff) Unit
+setProp :: forall a. String -> a -> JQuery -> Effect Unit
 ```
 
 Set a single property.
@@ -150,7 +158,7 @@ Set a single property.
 #### `getProp`
 
 ``` purescript
-getProp :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Foreign
+getProp :: String -> JQuery -> Effect Foreign
 ```
 
 Get a property value.
@@ -158,7 +166,7 @@ Get a property value.
 #### `append`
 
 ``` purescript
-append :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) Unit
+append :: JQuery -> JQuery -> Effect Unit
 ```
 
 Append the first node as a child node of the second.
@@ -166,7 +174,7 @@ Append the first node as a child node of the second.
 #### `remove`
 
 ``` purescript
-remove :: forall eff. JQuery -> Eff (dom :: DOM | eff) Unit
+remove :: JQuery -> Effect Unit
 ```
 
 Remove selected elements.
@@ -174,7 +182,7 @@ Remove selected elements.
 #### `clear`
 
 ``` purescript
-clear :: forall eff. JQuery -> Eff (dom :: DOM | eff) Unit
+clear :: JQuery -> Effect Unit
 ```
 
 Remove child elements.
@@ -182,7 +190,7 @@ Remove child elements.
 #### `before`
 
 ``` purescript
-before :: forall eff. JQuery -> JQuery -> Eff (dom :: DOM | eff) Unit
+before :: JQuery -> JQuery -> Effect Unit
 ```
 
 Insert an element before another.
@@ -190,7 +198,7 @@ Insert an element before another.
 #### `appendText`
 
 ``` purescript
-appendText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
+appendText :: String -> JQuery -> Effect Unit
 ```
 
 Append text as a child node.
@@ -198,7 +206,7 @@ Append text as a child node.
 #### `body`
 
 ``` purescript
-body :: forall eff. Eff (dom :: DOM | eff) JQuery
+body :: Effect JQuery
 ```
 
 Get the document body node.
@@ -206,7 +214,7 @@ Get the document body node.
 #### `getText`
 
 ``` purescript
-getText :: forall eff. JQuery -> Eff (dom :: DOM | eff) String
+getText :: JQuery -> Effect String
 ```
 
 Get the text content of an element.
@@ -214,7 +222,7 @@ Get the text content of an element.
 #### `setText`
 
 ``` purescript
-setText :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
+setText :: String -> JQuery -> Effect Unit
 ```
 
 Set the text content of an element.
@@ -222,7 +230,7 @@ Set the text content of an element.
 #### `getHtml`
 
 ``` purescript
-getHtml :: forall eff. JQuery -> Eff (dom :: DOM | eff) String
+getHtml :: JQuery -> Effect String
 ```
 
 Get the html content of an element.
@@ -230,7 +238,7 @@ Get the html content of an element.
 #### `setHtml`
 
 ``` purescript
-setHtml :: forall eff. String -> JQuery -> Eff (dom :: DOM | eff) Unit
+setHtml :: String -> JQuery -> Effect Unit
 ```
 
 Set the html content of an element
@@ -238,7 +246,7 @@ Set the html content of an element
 #### `getValue`
 
 ``` purescript
-getValue :: forall eff. JQuery -> Eff (dom :: DOM | eff) Foreign
+getValue :: JQuery -> Effect Foreign
 ```
 
 Get the value of a form element.
@@ -246,7 +254,7 @@ Get the value of a form element.
 #### `setValue`
 
 ``` purescript
-setValue :: forall eff a. a -> JQuery -> Eff (dom :: DOM | eff) Unit
+setValue :: forall a. a -> JQuery -> Effect Unit
 ```
 
 Set the value of a form element.
@@ -254,7 +262,7 @@ Set the value of a form element.
 #### `toggle`
 
 ``` purescript
-toggle :: forall eff. JQuery -> Eff (dom :: DOM | eff) Unit
+toggle :: JQuery -> Effect Unit
 ```
 
 Toggle visibility of an element.
@@ -262,7 +270,7 @@ Toggle visibility of an element.
 #### `setVisible`
 
 ``` purescript
-setVisible :: forall eff. Boolean -> JQuery -> Eff (dom :: DOM | eff) Unit
+setVisible :: Boolean -> JQuery -> Effect Unit
 ```
 
 Set the visibility of an element.
@@ -270,7 +278,7 @@ Set the visibility of an element.
 #### `hide`
 
 ``` purescript
-hide :: forall eff. JQuery -> Eff (dom :: DOM | eff) Unit
+hide :: JQuery -> Effect Unit
 ```
 
 Hide elements.
@@ -278,7 +286,7 @@ Hide elements.
 #### `display`
 
 ``` purescript
-display :: forall eff. JQuery -> Eff (dom :: DOM | eff) Unit
+display :: JQuery -> Effect Unit
 ```
 
 Show elements.
@@ -286,7 +294,7 @@ Show elements.
 #### `on`
 
 ``` purescript
-on :: forall eff a. String -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) Unit
+on :: forall a. String -> (JQueryEvent -> JQuery -> Effect a) -> JQuery -> Effect Unit
 ```
 
 Register an event handler.
@@ -294,15 +302,31 @@ Register an event handler.
 #### `on'`
 
 ``` purescript
-on' :: forall eff a. String -> Selector -> (JQueryEvent -> JQuery -> Eff (dom :: DOM | eff) a) -> JQuery -> Eff (dom :: DOM | eff) Unit
+on' :: forall a. String -> Selector -> (JQueryEvent -> JQuery -> Effect a) -> JQuery -> Effect Unit
 ```
 
 Register an event handler for elements matching a selector.
 
+#### `off`
+
+``` purescript
+off :: String -> JQuery -> Effect Unit
+```
+
+Remove an event handler.
+
+#### `off'`
+
+``` purescript
+off' :: JQuery -> Effect Unit
+```
+
+Remove all event handler.
+
 #### `toArray`
 
 ``` purescript
-toArray :: forall eff. JQuery -> Eff (dom :: DOM | eff) (Array JQuery)
+toArray :: JQuery -> Effect (Array JQuery)
 ```
 
 Get an array of matching elements.
@@ -310,7 +334,7 @@ Get an array of matching elements.
 #### `preventDefault`
 
 ``` purescript
-preventDefault :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+preventDefault :: JQueryEvent -> Effect Unit
 ```
 
 Prevent the default action for an event.
@@ -318,7 +342,7 @@ Prevent the default action for an event.
 #### `stopPropagation`
 
 ``` purescript
-stopPropagation :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+stopPropagation :: JQueryEvent -> Effect Unit
 ```
 
 Stop propagation an event.
@@ -326,7 +350,7 @@ Stop propagation an event.
 #### `stopImmediatePropagation`
 
 ``` purescript
-stopImmediatePropagation :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Unit
+stopImmediatePropagation :: JQueryEvent -> Effect Unit
 ```
 
 Stop immediate propagation an event.
@@ -334,7 +358,7 @@ Stop immediate propagation an event.
 #### `getTarget`
 
 ``` purescript
-getTarget :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) JQuery
+getTarget :: JQueryEvent -> Effect JQuery
 ```
 
 Get the `target` propery of the event object.
@@ -342,7 +366,7 @@ Get the `target` propery of the event object.
 #### `getCurrentTarget`
 
 ``` purescript
-getCurrentTarget :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) JQuery
+getCurrentTarget :: JQueryEvent -> Effect JQuery
 ```
 
 Get the `currentTarget` property from the event object.
@@ -350,7 +374,7 @@ Get the `currentTarget` property from the event object.
 #### `getPageX`
 
 ``` purescript
-getPageX :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Number
+getPageX :: JQueryEvent -> Effect Number
 ```
 
 Get the `pageX` property from the event object.
@@ -358,7 +382,7 @@ Get the `pageX` property from the event object.
 #### `getPageY`
 
 ``` purescript
-getPageY :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Number
+getPageY :: JQueryEvent -> Effect Number
 ```
 
 Get the `pageY` property from the event object.
@@ -366,7 +390,7 @@ Get the `pageY` property from the event object.
 #### `getWhich`
 
 ``` purescript
-getWhich :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Int
+getWhich :: JQueryEvent -> Effect Int
 ```
 
 Get the `which` property from the event object.
@@ -374,7 +398,7 @@ Get the `which` property from the event object.
 #### `getMetaKey`
 
 ``` purescript
-getMetaKey :: forall eff. JQueryEvent -> Eff (dom :: DOM | eff) Boolean
+getMetaKey :: JQueryEvent -> Effect Boolean
 ```
 
 Get the `metaKey` property from the event object.
@@ -382,7 +406,7 @@ Get the `metaKey` property from the event object.
 #### `clone`
 
 ``` purescript
-clone :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+clone :: JQuery -> Effect JQuery
 ```
 
 Create a deep copy of the set of matched elements.
@@ -390,7 +414,7 @@ Create a deep copy of the set of matched elements.
 #### `cloneWithDataAndEvents`
 
 ``` purescript
-cloneWithDataAndEvents :: forall eff. JQuery -> Eff (dom :: DOM | eff) JQuery
+cloneWithDataAndEvents :: JQuery -> Effect JQuery
 ```
 
 Create a deep copy of the set of matched elements,
