@@ -246,7 +246,7 @@ exports.on = function(evt) {
     };
 };
 
-exports["on'"] = function(evt) {
+exports.delegate = function(evt) {
     return function(sel) {
         return function(act) {
             return function(ob) {
@@ -270,7 +270,7 @@ exports.off = function(evt) {
 };
 
 
-exports["off'"] = function(ob) {
+exports.deafen = function(ob) {
     return function() {
         return ob.off();
     };
