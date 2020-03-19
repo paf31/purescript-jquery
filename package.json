@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf output && rimraf .pulp-cache",
-    "test": "pulp browserify -m Test.Main --to html/index.js",
+    "test": "pulp build -I test && pulp browserify -m Test.Main --to html/index.js",
     "build": "pulp build"
   },
   "devDependencies": {
