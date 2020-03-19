@@ -190,13 +190,19 @@ display = setVisible true
 foreign import on :: forall a. String -> (JQueryEvent -> JQuery -> Effect a) -> JQuery -> Effect Unit
 
 -- | Register an event handler for elements matching a selector.
-foreign import on':: forall a. String -> Selector -> (JQueryEvent -> JQuery -> Effect a) -> JQuery -> Effect Unit
+foreign import delegate :: forall a. String -> Selector -> (JQueryEvent -> JQuery -> Effect a) -> JQuery -> Effect Unit
+
+on':: forall a. String -> Selector -> (JQueryEvent -> JQuery -> Effect a) -> JQuery -> Effect Unit
+on' = delegate
 
 -- | Remove an event handler.
 foreign import off :: String -> JQuery -> Effect Unit
 
 -- | Remove all event handler.
-foreign import off':: JQuery -> Effect Unit
+foreign import deafen :: JQuery -> Effect Unit
+
+off':: JQuery -> Effect Unit
+off' = deafen
 
 -- | Get an array of matching elements.
 foreign import toArray :: JQuery -> Effect (Array JQuery)
